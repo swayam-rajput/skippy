@@ -3,7 +3,7 @@
     "name": "Skippy",
     "description": "Skip to a timestamp for every song you like. Drag the pin icon to the progress bar to save a timestamp, Spotify will auto-skip to it every time the track plays.",
     "preview": "screenshot.png",
-    "main": "songBookmark.js",
+    "main": "skippy.js",
     "readme": "README.md",
     "authors": [
       { "name": "swayam-rajput", "url": "https://github.com/swayam-rajput" }
