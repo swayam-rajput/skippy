@@ -4,7 +4,7 @@
 
 (function Skippy() {
     if (!Spicetify?.Player?.addEventListener || !Spicetify?.Platform) {
-        setTimeout(Skippy, 300);
+        setTimeout(Skippy, 800);
         return;
     }
 
@@ -269,7 +269,7 @@
                 if (hl) {
                     hl.textContent = msToTime(previewMs);
                     hl.style.left = `${Math.max(4, Math.min(e.clientX - 20, window.innerWidth - 44))}px`;
-                    hl.style.top = `${e.clientY - 28}px`;
+                    hl.style.top = `${e.clientY - 48}px`;
                     hl.classList.add("show");
                 }
             });
@@ -302,24 +302,24 @@
         },
 
         // ── Progress bar hover timestamp ────────────────────
-        setupHoverLabel() {
-            const pb = this.progressBarEl;
-            const hl = this.hoverLabelEl;
+        // setupHoverLabel() {
+        //     const pb = this.progressBarEl;
+        //     const hl = this.hoverLabelEl;
 
-            pb.addEventListener("mousemove", (e) => {
-                if (this._drag) return; // already handled in drag mousemove
-                const rect = pb.getBoundingClientRect();
-                const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-                hl.textContent = msToTime(pct * getDuration());
-                hl.style.left = `${Math.max(4, Math.min(e.clientX - 20, window.innerWidth - 44))}px`;
-                hl.style.top = `${e.clientY - 28}px`;
-                hl.classList.add("show");
-            });
+        //     pb.addEventListener("mousemove", (e) => {
+        //         if (this._drag) return; // already handled in drag mousemove
+        //         const rect = pb.getBoundingClientRect();
+        //         const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        //         hl.textContent = msToTime(pct * getDuration());
+        //         hl.style.left = `${Math.max(4, Math.min(e.clientX - 20, window.innerWidth - 44))}px`;
+        //         hl.style.top = `${e.clientY - 28}px`;
+        //         hl.classList.add("show");
+        //     });
 
-            pb.addEventListener("mouseleave", () => {
-                if (!this._drag) hl.classList.remove("show");
-            });
-        },
+        //     pb.addEventListener("mouseleave", () => {
+        //         if (!this._drag) hl.classList.remove("show");
+        //     });
+        // },
 
         // ─────────────────────────────────────────
         // TOOLTIP LOGIC
@@ -362,7 +362,7 @@
         },
 
         scheduleHide() {
-            this.tooltipHideTimer = setTimeout(() => this.hideTooltip(), 1000);
+            this.tooltipHideTimer = setTimeout(() => this.hideTooltip(), 2000);
         },
 
         hideTooltip() {
@@ -537,9 +537,9 @@
                     border-color: rgba(255,255,255,0.18);
                 }
                 .sb-drag-pin:active { cursor: grabbing; }
-                .sb-drag-pin.dragging { opacity: 0.35; cursor: grabbing; }
+                .sb-drag-pin.dragging { opacity: 0.35; cursor: default; }
                 .sb-drag-pin.has-bookmark {
-                    color: var(--spice-button-active, #1ed760);
+                    color: var(--spice-button-active, #496e91);
                     border-color: rgba(30,215,96,0.35);
                     background: rgba(30,215,96,0.07);
                 }
@@ -549,17 +549,16 @@
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    width: 22px;
-                    height: 22px;
-                    background: var(--spice-main, #121212);
-                    border: 1px solid rgba(30,215,96,0.6);
-                    border-radius: 3px;
-                    cursor: grab;
+                    width: 15px;
+                    height: 15px;
+                    background: #4687d6;
+                    border-radius: 1px;
+                    cursor: pointer;
                     z-index: 20;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    color: var(--spice-button-active, #1ed760);
+                    color: #fff;
                     pointer-events: all;
                     transition: border-color 0.12s;
                 }
@@ -601,7 +600,7 @@
                     background: rgba(0,0,0,0.75);
                     border-radius: 3px;
                     padding: 2px 5px;
-                    font-size: 11px;
+                    font-size: 12px;
                     color: #fff;
                     z-index: 99999;
                     pointer-events: none;
